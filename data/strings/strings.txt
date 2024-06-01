@@ -2345,7 +2345,7 @@
     ko = 지도 저장 위치:
     lt = Išsaugoti žemėlapius į
     mr = नकाशे येथे साठवा
-    nb = Lagre kart på
+    nb = Lagre kart p��
     nl = Kaarten opslaan in
     pl = Zapisz mapy do
     pt = Guardar mapas em
@@ -4101,7 +4101,7 @@
     pt = Surgiu uma falha ao enviar os favoritos. O ficheiro pode estar corrompido ou com defeito.
     pt-BR = Falha no envio dos favoritos. O arquivo pode estar corrompido ou com defeito.
     ro = Încărcarea locurilor preferate a eșuat. Fișierul poate fi defect.
-    ru = Файл с метками не был загружен. Возможно, файл повреждён или неисправен.
+    ru = Файл с метками не был заг��ужен. Возможно, файл повреждён или неисправен.
     sk = Načítavanie záložiek sa nepodarilo. Súbor môže byť poškodený alebo chybný.
     sv = Inläsningen av bokmärkena misslyckades. Filen kan vara skadad eller defekt.
     th = การอัปโหลดล้มเหลว ไฟล์อาจเสียหายหรือมีข้อบกพร่อง
@@ -8647,7 +8647,7 @@
     tr = Rota oluşturabilmemiz için bulunduğunuz yerden hedefinize kadar olan tüm haritaları indirmemiz ve güncellememiz gerekiyor.
     uk = Для створення маршруту необхідно щоб всі мапи, починаючи від вашого місцезнаходження і до пункту призначення, були завантажені та оновлені.
     vi = Tạo một tuyến đường đòi hỏi tất cả các bản đồ từ vị trí của bạn đến điểm đến phải được tải xuống và cập nhật.
-    zh-Hans = 创建路线需要下载并更新好所有从您的位置到目的地的地图。
+    zh-Hans = 创建路线需要下载并更新好所���从您的位置到目的地的地图。
     zh-Hant = 建立路線需要下載並更新好所有從您的位置到目的地的地圖。
 
   [routing_not_enough_space]
@@ -9938,7 +9938,7 @@
     sv = Kontrollera GPS-signal
     th = ตรวจสอบสัญญาณ GPS
     tr = GPS sinyalini kontrol edin
-    uk = Перевірте сигнал GPS
+    uk = П��ревірте сигнал GPS
     vi = Kiểm tra tín hiệu GPS
     zh-Hans = 检查 GPS 信号
     zh-Hant = 查看 GPS 訊號
@@ -15986,7 +15986,7 @@
     cs = Ke stažení potřebujete více volného místa. Odstraňte prosím nepotřebná data.
     da = For at opdatere app'en skal du bruge mere plads. Slet unødvendig data.
     de = Zum Herunterladen benötigen Sie mehr Platz. Bitte löschen Sie unnötige Daten.
-    el = Για να το κατεβάσετε, χρειάζεστε περισσότερο χώρο. Διαγράψτε μη απαραίτητα δεδομένα.
+    el = Για να το κατεβάσετε, χρειάζεστε περισσότερο χώρο. Διαγρ��ψτε μη απαραίτητα δεδομένα.
     es = Necesita más espacio para descargar. Por favor, elimine los datos innecesarios.
     et = Alla laadimiseks vajad rohkem ruumi. Palun kustuta ebavajalikke andmeid.
     eu = Leku gehiago behar duzu deskargatzeko. Ezabatu beharrezkoak ez diren datuak.
@@ -20739,7 +20739,7 @@
     sk = Prihláste sa do OpenStreetMap, aby ste mohli automaticky nahrať všetky svoje úpravy mapy. Viac informácií sa dozviete
     sv = Logga in på OpenStreetMap för att automatiskt ladda upp alla dina kartredigeringar. Läs mer
     sw = Tafadhali ingia kwenye OpenStreetMap ili kupakia kiotomatiki hariri zako zote za ramani. Pata maelezo zaidi
-    th = กรุณาเข้าสู่ระบบ OpenStreetMap เพื่ออัปโหลดการแก้ไขแผนที่ทั้งหมดของคุณโดยอัตโนมัติ เรียนรู้เพิ่มเติม
+    th = กรุณาเข้าสู่ร���บบ OpenStreetMap เพื่ออัปโหลดการแก้ไขแผนที่ทั้งหมดของคุณโดยอัตโนมัติ เรียนรู้เพิ่มเติม
     tr = Tüm harita düzenlemelerinizi otomatik olarak yüklemek için lütfen OpenStreetMap'e giriş yapın. Daha fazla bilgi
     uk = Будь ласка увійдіть в акаунт OpenStreetMap.org, щоб автоматично публікувати зміни до мапи. Подробиці за
     vi = Vui lòng đăng nhập vào OpenStreetMap để tự động tải lên tất cả các chỉnh sửa bản đồ của bạn. Tìm hiểu thêm
@@ -20923,7 +20923,7 @@
     sw = Onyeshana hifadhi mbaya
     th = จำลองแบบที่เก็บข้อมูลที่ไม่ดี
     tr = Bozuk depolama alanını taklit et
-    uk = Емулювати проблемне сховище
+    uk = Емулювати проблем��е сховище
     vi = Giả lập ổ lưu trữ hỏng
     zh-Hans = 模拟不良存储空间
     zh-Hant = 模擬不良儲存空間
@@ -22150,7 +22150,7 @@
     sv:other = %d filer har hittats. Du kommer att se dem efter omvandlingen.
     sw:one = Faili %d ilipatikana. Utaiona baada ya uongofu.
     sw:other = Files %d zimepatikana. Utawaona baada ya uongofu.
-    th = %d ไฟล์ที่ค้นพบ คุณจะเห็นพวกเขาหลังจากการแปลง
+    th = %d ไฟล์ที่ค้นพ��� คุณจะเห็นพวกเขาหลังจากการแปลง
     tr = %d dosya bulundu. Dönüşümden sonra onları göreceksiniz.
     uk:few = %d файлу були знайдені. Ви побачите їх після конвертації.
     uk:one = %d файл був знайдений. Ви побачите його після перетворення.
@@ -22342,74 +22342,6 @@
     vi = Khôi phục
     zh-Hans = 恢复
     zh-Hant = 恢復
-
-  [objects]
-    tags = android,ios
-    en:one = %d object
-    en:other = %d objects
-    ar = غرض %d
-    az = %d obyekt
-    be:few = %d аб'екты
-    be:one = %d аб'ект
-    be:other = %d аб'ектаў
-    bg:one = %d обект
-    bg:other = %d обекта
-    ca:one = %d objecte
-    ca:other = %d objectes
-    cs = %d místo
-    da = %d sted
-    de:one = %d Objekt
-    de:other = %d Objekte
-    el:one = %d αντικείμενο
-    el:other = %d αντικείμενα
-    es-MX = %d lugar
-    es:one = %d objeto
-    es:other = %d objetos
-    et:one = %d objekt
-    et:other = %d objekti
-    eu:one = objektu %d
-    eu:other = %d objektu
-    fa:one = %d شیء
-    fa:other = %d شیء
-    fi:one = %d kohde
-    fi:other = %d kohdetta
-    fr:one = %d objet
-    fr:other = %d objets
-    he:one = פריט %d
-    he:other = %d פריטים
-    hi:one = %d वस्तु
-    hi:other = %d वस्तुएं
-    hu = %d hely
-    id = tempat %d
-    it:one = %d oggetto
-    it:other = %d oggetti
-    ja = %dの場所
-    ko = %d 장소
-    mr = %d वस्तू
-    nb = %d sted
-    nl = %d plaats
-    pl:few = %d obiekty
-    pl:many = %d obiektów
-    pl:one = %d obiekt
-    pt-BR:one = %d objeto
-    pt-BR:other = %d objetos
-    pt:one = %d objeto
-    pt:other = %d objetos
-    ro:one = %d obiect
-    ro:other = %d obiecte
-    ru:few = %d объекта
-    ru:one = %d объект
-    ru:other = %d объектов
-    sk = %d miesto
-    sv:one = %d plats
-    sv:other = %d platser
-    sw = Eneo %d
-    th = %d สถานที่
-    tr = %d obje
-    uk = %d місце
-    vi = %d nơi
-    zh-Hans = %d 地点
-    zh-Hant = %d 地點
 
   [places]
     tags = android
@@ -25235,7 +25167,7 @@
     fa = امکان ایجاد مسیر به مقصد شما نیست. لطفاً نقطه دیگری را انتخاب کنید
     fi = Reittiä ei ole mahdollista luoda loppupisteeseen. Valitse toinen
     fr = Impossible de créer un itinéraire jusqu'au point final. Choisissez-en un autre
-    he = לא ניתן למצוא מסלול ליעד שלך. נא לבחור נקודת יעד אחרת.
+    he = לא ניתן למצוא מסלול ליעד שלך. נא לבחור נקודת י��ד אחרת.
     hi = अपने गंतव्य तक पहुंचने का मार्ग ढूंढने में असमर्थ. कृपया कोई अन्य अंतिम बिंदु चुनें
     hu = Nem lehet útvonalat tervezni a célodhoz. Kérjük válassz egy másik pontot
     id = Tidak dapat membuat rute ke tujuan Anda. Pilih titik lainnya
@@ -27622,7 +27554,7 @@
     ja = 難易度
     ko = 난이도
     lt = Sudėtingumo lygis
-    mr = काठिण्य पातळी
+    mr = काठिण्य पात���ी
     nb = Vanskelighetsgrad
     nl = Moeilijkheidsgraad
     pl = Poziom trudności
@@ -28442,7 +28374,7 @@
     it = Se abilitato, lo schermo sarà sempre acceso quando si visualizza la mappa.
     ja = 有効にすると、地図を表示するときにスクリーンが常にオンになる。
     ko = 활성화하면 지도를 표시할 때 화면이 항상 켜져 있습니다.
-    mr = सक्षम असतानानकाशाशप्रदर्शितिकरतानानस्क्रीनीनेहमीमचालूाअसेलसेल.
+    mr = सक्���म असतानानकाशाशप्रदर्शितिकरतानानस्क्रीनीनेहमीमचालूाअसेलसेल.
     nb = Når dette er aktivert, vil skjermen alltid være på når kartet vises.
     nl = Als deze optie is ingeschakeld, staat het scherm altijd aan als de kaart wordt weergegeven.
     pl = Po włączeniu ekran będzie zawsze włączony podczas wyświetlania mapy.
@@ -29178,7 +29110,7 @@
     fi = Tiesitkö, että voit valita mitä tahansa paikkaa kartalla pitkään napauttamalla sen?
     fr = Savez-vous que vous pouvez appuyer longuement sur n'importe quel endroit de la carte pour le sélectionner ?
     he = האם אתה יודע שאתה יכול ללחוץ ארוכות על כל מקום במפה כדי לבחור אותו?
-    hi = क्या आप जानते हैं कि आप मानचित्र पर किसी भी स्थान को चुनने के लिए उस पर देर तक टैप कर सकते हैं?
+    hi = क्या आप जानते हैं कि आप मानचित्र पर किसी भी स्थान को चुनने के लिए उस पर देर तक टैप कर सक���े हैं?
     hu = Tudja, hogy a térkép bármely pontjára hosszan koppintva kiválaszthatja azt?
     id = Tahukah Anda bahwa Anda dapat mengetuk lama tempat mana pun di peta untuk memilihnya?
     it = Sai che puoi toccare a lungo qualsiasi luogo sulla mappa per selezionarlo?
@@ -29367,7 +29299,7 @@
     sk = Mapové údaje môžete jednoducho opraviť a vylepšiť.
     sv = Du kan enkelt fixa och förbättra kartdata.
     sw = Unaweza kurekebisha na kuboresha data ya ramani kwa urahisi.
-    th = คุณสามารถแก้ไขและปรับปรุงข้อมูลแผนที่ได้อย่างง่ายดาย
+    th = คุณสามารถแก้ไขและปรับปรุง���้อมูลแผนที่ได้อย่างง่ายดาย
     tr = Harita verilerini kolayca düzeltebilir ve iyileştirebilirsiniz.
     uk = Ви можете легко виправити та покращити дані карти.
     vi = Bạn có thể dễ dàng sửa chữa và cải thiện dữ liệu bản đồ.
