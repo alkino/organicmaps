@@ -286,6 +286,9 @@ highway-footway-bicycle::cycleline                  # line::cycleline z13- (also
 highway-path-bicycle::cycleline                     # line::cycleline z12- (also has line z11-, pathtext z13-)
 === 170
 
+addr:interpolation                                  # line z17-
+addr:interpolation-even                             # line z17-
+addr:interpolation-odd                              # line z17-
 highway-construction                                # line z11- (also has pathtext z15-)
 leisure-track                                       # line z15- (also has caption z16-)
 railway-abandoned                                   # line z13-
