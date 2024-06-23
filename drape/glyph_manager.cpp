@@ -633,22 +633,29 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
     hb_buffer_set_language(buf, hbLanguage);
 
     // TODO(AB): Check not only the first character to determine font for the run, but all chars.
-    auto firstCharacterIter{text.begin() + substring.m_start};
-    auto const firstCharacterUnicode = utf8::unchecked::next16(firstCharacterIter);
-
-    int const fontIndex = GetFontIndex(firstCharacterUnicode);
-    if (fontIndex < 0)
+    auto u32CharacterIter{text.begin() + substring.m_start};
+    auto const end{text.begin() + substring.m_start + substring.m_length};
+    do
     {
-      // TODO(AB): Add missing glyph character's metrics
-      LOG(LWARNING, ("Skip run because no font was found for character", NumToHex(firstCharacterUnicode)));
-      continue;
-    }
-
+      auto const u32Character = utf8::unchecked::next16(u32CharacterIter);
+      // TODO(AB): Mapping characters to fonts can be optimized.
+      int const fontIndex = GetFontIndex(u32Character);
+    if (fontIndex < 0)
+        LOG(LWARNING, ("No font was found for character", NumToHex(u32Character)));
+      else
+    {
+        // TODO(AB): Mapping font only by the first character in a string may fail in theory in some cases.
     m_impl->m_fonts[fontIndex]->Shape(buf, fontPixelHeight, fontIndex, allGlyphs);
+        break;
+      }
+    } while (u32CharacterIter != end);
   }
   // Tidy up.
   // TODO(AB): avoid recreating buffer each time.
   hb_buffer_destroy(buf);
+
+  if (allGlyphs.m_glyphs.empty())
+    LOG(LWARNING, ("No glyphs were found in all fonts for string", utf8));
 
   return allGlyphs;
 }
