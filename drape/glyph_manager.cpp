@@ -335,13 +335,18 @@ struct GlyphManager::Impl
 {
   DISALLOW_COPY_AND_MOVE(Impl);
 
-  Impl() = default;
+  Impl()
+  {
+    m_harfbuzzBuffer = hb_buffer_create();
+  }
 
   ~Impl()
   {
     m_fonts.clear();
     if (m_library)
       FREETYPE_CHECK(FT_Done_FreeType(m_library));
+
+    hb_buffer_destroy(m_harfbuzzBuffer);
   }
 
   FT_Library m_library;
@@ -361,6 +366,7 @@ struct GlyphManager::Impl
   };
   // TODO(AB): Compare performance with std::map.
   std::unordered_map<std::string, text::TextMetrics, StringHash, std::equal_to<>> m_textMetricsCache;
+  hb_buffer_t * m_harfbuzzBuffer;
 };
 
 // Destructor is defined where pimpl's destructor is already known.
@@ -638,20 +644,17 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
 
   text::TextMetrics allGlyphs;
 
-  // TODO(AB): Cache buffer.
-  hb_buffer_t * buf = hb_buffer_create();
   for (auto const & substring : segments)
   {
-    hb_buffer_clear_contents(buf);
+    hb_buffer_clear_contents(m_impl->m_harfbuzzBuffer);
 
     // TODO(AB): Some substrings use different fonts.
-    hb_buffer_add_utf16(buf, reinterpret_cast<const uint16_t *>(text.data()), static_cast<int>(text.size()),
-                        substring.m_start, substring.m_length);
-    hb_buffer_set_direction(buf, substring.m_direction);
-    hb_buffer_set_script(buf, substring.m_script);
-    hb_buffer_set_language(buf, hbLanguage);
+    hb_buffer_add_utf16(m_impl->m_harfbuzzBuffer, reinterpret_cast<const uint16_t *>(text.data()),
+        static_cast<int>(text.size()), substring.m_start, substring.m_length);
+    hb_buffer_set_direction(m_impl->m_harfbuzzBuffer, substring.m_direction);
+    hb_buffer_set_script(m_impl->m_harfbuzzBuffer, substring.m_script);
+    hb_buffer_set_language(m_impl->m_harfbuzzBuffer, hbLanguage);
 
-    // TODO(AB): Check not only the first character to determine font for the run, but all chars.
     auto u32CharacterIter{text.begin() + substring.m_start};
     auto const end{text.begin() + substring.m_start + substring.m_length};
     do
@@ -664,18 +667,14 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
       else
       {
         // TODO(AB): Mapping font only by the first character in a string may fail in theory in some cases.
-        m_impl->m_fonts[fontIndex]->Shape(buf, fontPixelHeight, fontIndex, allGlyphs);
+        m_impl->m_fonts[fontIndex]->Shape(m_impl->m_harfbuzzBuffer, fontPixelHeight, fontIndex, allGlyphs);
         break;
       }
     } while (u32CharacterIter != end);
   }
-  // Tidy up.
-  // TODO(AB): avoid recreating buffer each time.
-  hb_buffer_destroy(buf);
 
   if (allGlyphs.m_glyphs.empty())
     LOG(LWARNING, ("No glyphs were found in all fonts for string", utf8));
-
 
   // Empirically measured, may need more tuning.
   size_t constexpr kMaxCacheSize = 50000;
