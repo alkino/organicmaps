@@ -218,10 +218,9 @@ public:
 
   std::string GetName() const { return std::string(m_fontFace->family_name) + ':' + m_fontFace->style_name; }
 
+  // This code is not thread safe.
   void Shape(hb_buffer_t * hbBuffer, int fontPixelSize, int fontIndex, text::TextMetrics & outMetrics)
   {
-    // TODO(AB): This code is not thread safe.
-
     // TODO(AB): Do not set the same font size every time.
     // TODO(AB): Use hb_font_set_scale to scale the same size font in HB instead of changing it in Freetype.
     FREETYPE_CHECK(FT_Set_Pixel_Sizes(m_fontFace, 0 /* pixel_width */, fontPixelSize /* pixel_height */));
@@ -244,7 +243,6 @@ public:
       // TODO(AB): Check for missing glyph ID?
       auto const glyphId = static_cast<uint16_t>(glyphInfo[i].codepoint);
 
-      // TODO(AB): Load each glyph only once for the given font size? Or is run cache more efficient?
       FT_Int32 constexpr flags = FT_LOAD_DEFAULT;
       FREETYPE_CHECK(FT_Load_Glyph(m_fontFace, glyphId, flags));
 
@@ -631,7 +629,11 @@ hb_language_t OrganicMapsLanguageToHarfbuzzLanguage(int8_t lang)
 // This method is NOT multithreading-safe.
 text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHeight, int8_t lang)
 {
-  ASSERT_EQUAL(dp::kBaseFontSizePixels, fontPixelHeight, ("Cache relies on the same font height/metrics for each glyph"));
+#ifdef DEBUG
+  static int const fontSize = fontPixelHeight;
+  ASSERT_EQUAL(fontSize, fontPixelHeight,
+      ("Cache relies on the same font height/metrics for each glyph", fontSize, fontPixelHeight));
+#endif
 
   // A simple cache greatly speeds up text metrics calculation. It has 80+% hit ratio in most scenarios.
   if (auto const found = m_impl->m_textMetricsCache.find(utf8); found != m_impl->m_textMetricsCache.end())

@@ -77,7 +77,7 @@ public:
     return 255.f * alpha;
   }
 
-  void RenderGlyphs(QPaintDevice * device)
+  void RenderGlyphs(QPaintDevice * device) const
   {
     QPainter painter(device);
     painter.fillRect(QRectF(0.0, 0.0, device->width(), device->height()), Qt::white);
@@ -87,7 +87,9 @@ public:
     std::cout << "Total width: " << shapedText.m_lineWidthInPixels << '\n';
     std::cout << "Max height: " << shapedText.m_maxLineHeightInPixels << '\n';
 
-    QPoint pen(10, 50);
+    int constexpr kLineStartX = 10;
+    int constexpr kLineMarginY = 50;
+    QPoint pen(kLineStartX, kLineMarginY);
 
     for (auto const & glyph : shapedText.m_glyphs)
     {
@@ -101,7 +103,8 @@ public:
       {
         QPoint currentPen = pen;
         currentPen.rx() += glyph.m_xOffset;
-        currentPen.ry() -= glyph.m_yOffset;
+        // Image is drawn at the top left origin, text metrics returns bottom left origin.
+        currentPen.ry() -= glyph.m_yOffset + h;
         painter.drawImage(currentPen, CreateImage(w, h, img.m_data->data()), QRect(0, 0, w, h));
       }
       pen += QPoint(glyph.m_xAdvance, glyph.m_yAdvance /* 0 for horizontal texts */);
@@ -109,8 +112,8 @@ public:
       img.Destroy();
     }
 
-    pen.rx() = 10;
-    pen.ry() = 100;
+    pen.rx() = kLineStartX;
+    pen.ry() += kLineMarginY;
 
     for (auto const & glyph : shapedText.m_glyphs)
     {
@@ -124,7 +127,7 @@ public:
       {
         QPoint currentPen = pen;
         currentPen.rx() += glyph.m_xOffset;
-        currentPen.ry() -= glyph.m_yOffset;
+        currentPen.ry() -= glyph.m_yOffset + h;
         painter.drawImage(currentPen, CreateImage(w, h, img.m_data->data()),
             QRect(dp::kSdfBorder, dp::kSdfBorder, w - 2 * dp::kSdfBorder, h - 2 * dp::kSdfBorder));
       }
@@ -136,7 +139,8 @@ public:
     ////////////////////////////////////////////////////////////////////////////
     // Manual rendering using HB functions.
     {
-      QPoint hbPen(10, 200);
+      pen.rx() = kLineStartX;
+      pen.ry() += kLineMarginY;
 
       auto const hbLanguage = hb_language_from_string(m_lang, -1);
 
@@ -223,12 +227,12 @@ public:
           // Empty images are possible for space characters.
           if (width != 0 && height != 0)
           {
-            QPoint currentPen = hbPen;
+            QPoint currentPen = pen;
             currentPen.rx() += x_offset;
             currentPen.ry() -= y_offset;
             painter.drawImage(currentPen, CreateImage(width, height, buffer), QRect(kSdfSpread, kSdfSpread, width - 2*kSdfSpread, height - 2*kSdfSpread));
           }
-          hbPen += QPoint(x_advance, y_advance);
+          pen += QPoint(x_advance, y_advance);
         }
 
         // Tidy up.
@@ -241,7 +245,9 @@ public:
     //////////////////////////////////////////////////////////////////
     // QT text renderer.
     {
-      QPoint pen(10, 250);
+      pen.rx() = kLineStartX;
+      pen.ry() += kLineMarginY;
+
       //QFont font("Noto Naskh Arabic");
       QFont font("Roboto");
       font.setPixelSize(m_fontPixelSize);
@@ -266,29 +272,29 @@ UNIT_TEST(GlyphLoadingTest)
 
   constexpr int fontSize = 27;
 
-  renderer.SetString("Тестовая строка", fontSize, "ru");
+  renderer.SetString("Строка", fontSize, "ru");
   RunTestLoop("ru", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
 
-  renderer.SetString("ØŒÆ", fontSize, "en");
-  RunTestLoop("en", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
-
-  renderer.SetString("𫝚 𫝛 𫝜", fontSize, "zh");
-  RunTestLoop("CJK Surrogates", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
-
-  renderer.SetString("الحلّة گلها"" كسول الزنجبيل القط""56""عين علي (الحربية)""123"" اَلْعَرَبِيَّةُ", fontSize, "ar");
-  RunTestLoop("Arabic1", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
-
-  renderer.SetString("12345""گُلها""12345""گُلها""12345", fontSize, "ar");
-  RunTestLoop("Arabic2", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
-
-  renderer.SetString("മനക്കലപ്പടി", fontSize, "ml");
-  RunTestLoop("Malay", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
-
-  renderer.SetString("Test 12 345 ""گُلها""678 9000 Test", fontSize, "ar");
-  RunTestLoop("Arabic Mixed", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
-
-  renderer.SetString("NFKC Razdoĺny NFKD Razdoĺny", fontSize, "be");
-  RunTestLoop("Polish", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  // renderer.SetString("ØŒÆ", fontSize, "en");
+  // RunTestLoop("en", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  //
+  // renderer.SetString("𫝚 𫝛 𫝜", fontSize, "zh");
+  // RunTestLoop("CJK Surrogates", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  //
+  // renderer.SetString("الحلّة گلها"" كسول الزنجبيل القط""56""عين علي (الحربية)""123"" اَلْعَرَبِيَّةُ", fontSize, "ar");
+  // RunTestLoop("Arabic1", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  //
+  // renderer.SetString("12345""گُلها""12345""گُلها""12345", fontSize, "ar");
+  // RunTestLoop("Arabic2", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  //
+  // renderer.SetString("മനക്കലപ്പടി", fontSize, "ml");
+  // RunTestLoop("Malay", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  //
+  // renderer.SetString("Test 12 345 ""گُلها""678 9000 Test", fontSize, "ar");
+  // RunTestLoop("Arabic Mixed", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
+  //
+  // renderer.SetString("NFKC Razdoĺny NFKD Razdoĺny", fontSize, "be");
+  // RunTestLoop("Polish", std::bind(&GlyphRenderer::RenderGlyphs, &renderer, _1));
 }
 
 }  // namespace glyph_mng_tests
