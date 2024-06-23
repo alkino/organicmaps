@@ -331,19 +331,12 @@ size_t TextLayout::GetGlyphCount() const
 
 float TextLayout::GetPixelLength() const
 {
-  // TODO(AB): Is ratio needed here?
   return m_shapedGlyphs.m_lineWidthInPixels * m_textSizeRatio;
-  // return m_textSizeRatio * std::accumulate(m_glyphRegions.begin(), m_glyphRegions.end(), 0.0f,
-  //                                          [](double const & v, GlyphRegion const & glyph) -> float
-  // {
-  //   return static_cast<float>(v) + glyph.GetAdvanceX();
-  // });
 }
 
 float TextLayout::GetPixelHeight() const
 {
-  //return m_shapedGlyphs.m_maxLineHeightInPixels * m_textSizeRatio;
-  return m_textSizeRatio * dp::kBaseFontSizePixels;
+  return m_shapedGlyphs.m_maxLineHeightInPixels * m_textSizeRatio;
 }
 
 dp::TGlyphs TextLayout::GetGlyphs() const

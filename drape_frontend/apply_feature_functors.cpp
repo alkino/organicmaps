@@ -932,13 +932,14 @@ void ApplyLineFeatureAdditional::GetRoadShieldsViewParams(ref_ptr<dp::TextureMan
   textParams.m_titleDecl.m_secondaryOptional = false;
   textParams.m_startOverlayRank = dp::OverlayRank1;
 
-  // TODO(AB): Only the width and height of text is used/needed from this layout.
-  TextLayout textLayout;
-  textLayout.Init(roadNumber, font.m_size, texMng);
+  auto const textMetrics = texMng->ShapeSingleTextLine(dp::kBaseFontSizePixels, roadNumber, nullptr);
+  float const textRatio = font.m_size * fontScale / dp::kBaseFontSizePixels;
+  float const textWidthInPixels = textMetrics.m_lineWidthInPixels * textRatio;
+  float const textHeightInPixels = textMetrics.m_maxLineHeightInPixels * textRatio;
 
   // Calculate width and height of a shield.
-  shieldPixelSize.x = textLayout.GetPixelLength() + 2.0 * paddingWidth;
-  shieldPixelSize.y = textLayout.GetPixelHeight() + 2.0 * paddingHeight;
+  shieldPixelSize.x = textWidthInPixels + 2.0 * paddingWidth;
+  shieldPixelSize.y = textHeightInPixels + 2.0 * paddingHeight;
   textParams.m_limitedText = true;
   textParams.m_limits = shieldPixelSize * 0.9;
 
@@ -977,8 +978,8 @@ void ApplyLineFeatureAdditional::GetRoadShieldsViewParams(ref_ptr<dp::TextureMan
 
     dp::TextureManager::SymbolRegion region;
     texMng->GetSymbolRegion(poiParams.m_symbolName, region);
-    float const symBorderWidth = (region.GetPixelSize().x - textLayout.GetPixelLength()) * 0.5f;
-    float const symBorderHeight = (region.GetPixelSize().y - textLayout.GetPixelHeight()) * 0.5f;
+    float const symBorderWidth = (region.GetPixelSize().x - textWidthInPixels) * 0.5f;
+    float const symBorderHeight = (region.GetPixelSize().y - textHeightInPixels) * 0.5f;
     textParams.m_titleDecl.m_primaryOffset = poiParams.m_offset + GetShieldOffset(anchor, symBorderWidth, symBorderHeight);
     shieldPixelSize = region.GetPixelSize();
   }
