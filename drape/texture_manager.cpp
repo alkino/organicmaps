@@ -490,9 +490,9 @@ text::TextMetrics TextureManager::ShapeSingleTextLine(float fontPixelHeight, std
 
   // TODO(AB): Is this mutex too slow?
   std::lock_guard lock(m_calcGlyphsMutex);
+
   // TODO(AB): Fix hard-coded lang.
   auto textMetrics = m_glyphManager->ShapeText(utf8, fontPixelHeight, "en");
-  //auto textMetrics = m_glyphManager->ShapeText(utf8, static_cast<int>(fontPixelHeight), "en");
 
   auto const & glyphs = textMetrics.m_glyphs;
 
