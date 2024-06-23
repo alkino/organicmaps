@@ -348,6 +348,19 @@ struct GlyphManager::Impl
   TUniBlocks m_blocks;
   TUniBlockIter m_lastUsedBlock;
   std::vector<std::unique_ptr<Font>> m_fonts;
+
+  // Required to use std::string_view as a search key for std::unordered_map::find().
+  struct StringHash
+  {
+    using hash_type = std::hash<std::string_view>;
+    using is_transparent = void;
+
+    std::size_t operator()(const char* str) const        { return hash_type{}(str); }
+    std::size_t operator()(std::string_view str) const   { return hash_type{}(str); }
+    std::size_t operator()(std::string const& str) const { return hash_type{}(str); }
+  };
+  // TODO(AB): Compare performance with std::map.
+  std::unordered_map<std::string, text::TextMetrics, StringHash, std::equal_to<>> m_textMetricsCache;
 };
 
 // Destructor is defined where pimpl's destructor is already known.
@@ -609,8 +622,15 @@ hb_language_t OrganicMapsLanguageToHarfbuzzLanguage(int8_t lang)
 }
 }  // namespace
 
+// This method is NOT multithreading-safe.
 text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHeight, int8_t lang)
 {
+  ASSERT_EQUAL(dp::kBaseFontSizePixels, fontPixelHeight, ("Cache relies on the same font height/metrics for each glyph"));
+
+  // A simple cache greatly speeds up text metrics calculation. It has 80+% hit ratio in most scenarios.
+  if (auto const found = m_impl->m_textMetricsCache.find(utf8); found != m_impl->m_textMetricsCache.end())
+    return found->second;
+
   const auto [text, segments] = harfbuzz_shaping::GetTextSegments(utf8);
 
   // TODO(AB): Optimize language conversion.
@@ -618,7 +638,6 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
 
   text::TextMetrics allGlyphs;
 
-  // TODO(AB): Cache runs.
   // TODO(AB): Cache buffer.
   hb_buffer_t * buf = hb_buffer_create();
   for (auto const & substring : segments)
@@ -640,12 +659,12 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
       auto const u32Character = utf8::unchecked::next16(u32CharacterIter);
       // TODO(AB): Mapping characters to fonts can be optimized.
       int const fontIndex = GetFontIndex(u32Character);
-    if (fontIndex < 0)
+      if (fontIndex < 0)
         LOG(LWARNING, ("No font was found for character", NumToHex(u32Character)));
       else
-    {
+      {
         // TODO(AB): Mapping font only by the first character in a string may fail in theory in some cases.
-    m_impl->m_fonts[fontIndex]->Shape(buf, fontPixelHeight, fontIndex, allGlyphs);
+        m_impl->m_fonts[fontIndex]->Shape(buf, fontPixelHeight, fontIndex, allGlyphs);
         break;
       }
     } while (u32CharacterIter != end);
@@ -656,6 +675,18 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
 
   if (allGlyphs.m_glyphs.empty())
     LOG(LWARNING, ("No glyphs were found in all fonts for string", utf8));
+
+
+  // Empirically measured, may need more tuning.
+  size_t constexpr kMaxCacheSize = 50000;
+  if (m_impl->m_textMetricsCache.size() > kMaxCacheSize)
+  {
+    LOG(LINFO, ("Clearing text metrics cache"));
+    // TODO(AB): Is there a better way? E.g. clear a half of the cache?
+    m_impl->m_textMetricsCache.clear();
+  }
+  
+  m_impl->m_textMetricsCache.emplace(utf8, allGlyphs);
 
   return allGlyphs;
 }
