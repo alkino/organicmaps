@@ -485,6 +485,8 @@ text::TextMetrics TextureManager::ShapeSingleTextLine(float fontPixelHeight, std
                                                       TGlyphsBuffer * glyphRegions)  // TODO(AB): Better name?
 {
   ASSERT(!utf8.empty(), ());
+  std::vector<ref_ptr<Texture::ResourceInfo>> resourcesInfo;
+  bool hasNewResources = false;
 
   // TODO(AB): Is this mutex too slow?
   std::lock_guard lock(m_calcGlyphsMutex);
@@ -505,11 +507,9 @@ text::TextMetrics TextureManager::ShapeSingleTextLine(float fontPixelHeight, std
   if (!group.m_texture)
     group.m_texture = AllocateGlyphTexture();
 
-  std::vector<ref_ptr<Texture::ResourceInfo>> resourcesInfo;
   if (glyphRegions)
     resourcesInfo.reserve(glyphs.size());
 
-  bool hasNewResources = false;
   for (auto const & glyph : glyphs)
   {
     bool newResource = false;
