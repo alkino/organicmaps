@@ -15,7 +15,8 @@ namespace generator
 class AddressEnricher
 {
   // Looks too big here? Avoiding duplicates is a thing, because we still check street name first.
-  static double constexpr kDistanceThresholdM = 20.0;
+  // Was 20, see Generator_Filter_NY test.
+  static double constexpr kDistanceThresholdM = 30.0;
 
 public:
   struct RawEntryBase
@@ -26,10 +27,7 @@ public:
     /// @name Used to compare house numbers by its integer value.
     /// @{
     // 0 is a possible HN value.
-    static uint64_t constexpr kInvalidHN = uint64_t(-1);
-    static uint64_t GetIntHN(std::string const & hn);
-
-    static std::pair<uint64_t, uint64_t> constexpr kInvalidRange{kInvalidHN, kInvalidHN};
+    static std::pair<uint64_t, uint64_t> constexpr kInvalidRange{-1, -1};
     std::pair<uint64_t, uint64_t> GetHNRange() const;
     /// @}
 
