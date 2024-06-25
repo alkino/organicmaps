@@ -29,8 +29,6 @@ class TextLayout
 public:
   virtual ~TextLayout() = default;
 
-  void Init(std::string const & text, float fontSize, ref_ptr<dp::TextureManager> textureManager);
-
   ref_ptr<dp::Texture> GetMaskTexture() const;
   size_t GetGlyphCount() const;
   float GetPixelLength() const;

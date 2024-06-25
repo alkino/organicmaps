@@ -102,6 +102,8 @@ public:
   // This method must be called only on Frontend renderer's thread.
   bool AreGlyphsReady(TGlyphs const & glyphs) const;
 
+  GlyphFontAndId GetSpaceGlyph() const;
+
   // On some devices OpenGL driver can't resolve situation when we upload to a texture on a thread
   // and use this texture to render on another thread. By this we move UpdateDynamicTextures call
   // into render thread. If you implement some kind of dynamic texture, you must synchronize UploadData
@@ -207,5 +209,8 @@ private:
   base::Timer m_uploadTimer;
   std::atomic_flag m_nothingToUpload {false};
   std::mutex m_calcGlyphsMutex;
+
+  // TODO(AB): Make a more robust use of BreakIterator to split strings and get rid of this space glyph.
+  GlyphFontAndId m_spaceGlyph;
 };
 }  // namespace dp

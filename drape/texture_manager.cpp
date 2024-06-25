@@ -396,6 +396,9 @@ void TextureManager::Init(ref_ptr<dp::GraphicsContext> context, Params const & p
   uint32_t constexpr averageGlyphSquare = baseGlyphHeightPixels * baseGlyphHeightPixels;
   m_maxGlypsCount = static_cast<uint32_t>(ceil(kGlyphAreaCoverage * textureSquare / averageGlyphSquare));
 
+  std::string_view constexpr kSpace{" "};
+  m_spaceGlyph = m_glyphManager->ShapeText(kSpace, dp::kBaseFontSizePixels, "en").m_glyphs.front().m_key;
+
   LOG(LDEBUG, ("Glyphs texture size =", kGlyphsTextureSize, "with max glyphs count =", m_maxGlypsCount));
 
   m_isInitialized = true;
@@ -555,6 +558,11 @@ TextureManager::TShapedTextLines TextureManager::ShapeMultilineText(float fontPi
   });
 
   return textLines;
+}
+
+GlyphFontAndId TextureManager::GetSpaceGlyph() const
+{
+  return m_spaceGlyph;
 }
 
 bool TextureManager::AreGlyphsReady(TGlyphs const & glyphs) const

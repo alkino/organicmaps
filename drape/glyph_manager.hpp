@@ -24,6 +24,11 @@ struct GlyphMetrics
   int32_t m_xAdvance;
   // yAdvance is used only in vertical text layouts and is 0 for horizontal texts.
   int32_t m_yAdvance {0};
+
+  bool operator==(GlyphMetrics const & other) const
+  {
+    return m_key == other.m_key;
+  }
 };
 
 // TODO(AB): Move to a separate file?
@@ -71,7 +76,7 @@ public:
   text::TextMetrics ShapeText(std::string_view utf8, int fontPixelHeight, int8_t lang);
   text::TextMetrics ShapeText(std::string_view utf8, int fontPixelHeight, char const * lang);
 
-  GlyphImage GetGlyphImage(GlyphFontAndId key, int pixelHeight, bool sdf);
+  GlyphImage GetGlyphImage(GlyphFontAndId key, int pixelHeight, bool sdf) const;
 
 private:
   // Immutable version can be called from any thread and doesn't require internal synchronization.

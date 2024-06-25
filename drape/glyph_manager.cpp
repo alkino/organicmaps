@@ -18,10 +18,10 @@
 
 #include <ft2build.h>
 #include <hb-ft.h>
-
 #include <limits>
 #include <sstream>
 #include <string>
+#include <unicode/unistr.h>
 #include <vector>
 
 #include FT_FREETYPE_H
@@ -608,7 +608,7 @@ bool GlyphManager::AreGlyphsReady(TGlyphs const & glyphs) const
 }
 
 // TODO(AB): Check and support invalid glyphs.
-GlyphImage GlyphManager::GetGlyphImage(GlyphFontAndId key, int pixelHeight, bool sdf)
+GlyphImage GlyphManager::GetGlyphImage(GlyphFontAndId key, int pixelHeight, bool sdf) const
 {
   return m_impl->m_fonts[key.m_fontIndex]->GetGlyphImage(key.m_glyphId, pixelHeight, sdf);
 }
@@ -645,6 +645,8 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
   hb_language_t const hbLanguage = OrganicMapsLanguageToHarfbuzzLanguage(lang);
 
   text::TextMetrics allGlyphs;
+  // TODO(AB): Check if it's slower or faster.
+  allGlyphs.m_glyphs.reserve(icu::UnicodeString{false, text.data(), static_cast<int32_t>(text.size())}.countChar32());
 
   for (auto const & substring : segments)
   {

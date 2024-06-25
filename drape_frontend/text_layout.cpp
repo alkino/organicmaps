@@ -122,61 +122,70 @@ protected:
   gpu::TTextOutlinedStaticVertexBuffer & m_buffer;
 };
 
-void SplitText(strings::UniString & visText, buffer_vector<size_t, 2> & delimIndexes)
+struct LineMetrics
 {
-  size_t const count = visText.size();
-  if (count > 15)
-  {
-    // split on two parts
-    typedef strings::UniString::iterator TIter;
-    auto const iMiddle = visText.begin() + count / 2;
+  size_t m_nextLineStartIndex;
+  float m_scaledLength;  // In pixels.
+  float m_scaledHeight;  // In pixels.
+};
 
-    char constexpr delims[] = " \n\t";
-    size_t constexpr delimsCount = std::size(delims) - 1;  // Do not count trailing string's zero.
+// Scan longer shaped glyphs, and try to split them into two strings if a space glyph is present.
+buffer_vector<LineMetrics, 2> SplitText(float textScale, dp::GlyphFontAndId space, dp::text::TextMetrics const & str)
+{
+  // Add the whole line by default.
+  buffer_vector<LineMetrics, 2> lines{{str.m_glyphs.size(),
+      textScale * str.m_lineWidthInPixels, textScale * str.m_maxLineHeightInPixels}};
 
-    // find next delimiter after middle [m, e)
-    auto iNext = std::find_first_of(iMiddle, visText.end(), delims, delims + delimsCount);
+  size_t const count = str.m_glyphs.size();
+  if (count <= 15)
+    return lines;
 
-    // find last delimiter before middle [b, m)
-    auto iPrev = std::find_first_of(std::reverse_iterator(iMiddle),
-                                    std::reverse_iterator(visText.begin()),
-                                    delims, delims + delimsCount).base();
-    // don't do split like this:
-    //     xxxx
-    // xxxxxxxxxxxx
-    if (4 * std::distance(visText.begin(), iPrev) <= static_cast<long>(count))
-      iPrev = visText.end();
-    else
-      --iPrev;
+  auto const begin = str.m_glyphs.begin();
+  auto const end = str.m_glyphs.end();
 
-    // get the closest delimiter to the middle
-    if (iNext == visText.end() ||
-        (iPrev != visText.end() && std::distance(iPrev, iMiddle) < std::distance(iMiddle, iNext)))
-    {
-      iNext = iPrev;
-    }
+  // Naive split on two parts using spaces as delimiters.
+  // Doesn't take into an account the width of glyphs/string.
+  auto const iMiddle = begin + count / 2;
 
-    // split string on 2 parts
-    if (iNext != visText.end())
-    {
-      ASSERT(iNext != visText.begin(), ());
-      TIter delimSymbol = iNext;
-      TIter secondPart = iNext + 1;
+  auto const isSpaceGlyph = [space](auto const & metrics){ return metrics.m_key == space; };
+  // Find next delimiter after middle [m, e)
+  auto iNext = std::find_if(iMiddle, end, isSpaceGlyph);
 
-      delimIndexes.push_back(static_cast<size_t>(std::distance(visText.begin(), delimSymbol)));
+  // Find last delimiter before middle [b, m)
+  auto iPrev = std::find_if(std::reverse_iterator(iMiddle), std::reverse_iterator(begin), isSpaceGlyph).base();
+  // Don't split like this:
+  //     xxxx
+  // xxxxxxxxxxxx
+  if (4 * (iPrev - begin) <= static_cast<long>(count))
+    iPrev = end;
+  else
+    --iPrev;
 
-      if (secondPart != visText.end())
-      {
-        strings::UniString result(visText.begin(), delimSymbol);
-        result.append(secondPart, visText.end());
-        visText = result;
-        delimIndexes.push_back(visText.size());
-      }
-      return;
-    }
-  }
+  // Get the closest space to the middle.
+  if (iNext == end || (iPrev != end && iMiddle - iPrev < iNext - iMiddle))
+    iNext = iPrev;
 
-  delimIndexes.push_back(count);
+  if (iNext == end)
+    return lines;
+
+  // Split string (actually, glyphs) into 2 parts.
+  ASSERT(iNext != begin, ());
+  ASSERT(space == iNext->m_key, ());
+
+  auto const spaceIndex = iNext;
+  auto const afterSpace = iNext + 1;
+  ASSERT(afterSpace != end, ());
+
+  lines.push_back(LineMetrics{
+      count,
+      textScale * std::accumulate(afterSpace, end, 0, [](auto acc, auto const & m){ return m.m_xAdvance + acc; }),
+      textScale * str.m_maxLineHeightInPixels});
+
+  // Update the first line too.
+  lines[0].m_nextLineStartIndex = afterSpace - begin;
+  auto const spaceWidth = textScale * spaceIndex->m_xAdvance;
+  lines[0].m_scaledLength -= lines[1].m_scaledLength + spaceWidth;
+  return lines;
 }
 
 class XLayouter
@@ -225,73 +234,6 @@ private:
     float m_penOffset;
 };
 
-void CalculateOffsets(dp::Anchor anchor, float textRatio,
-                      dp::TextureManager::TGlyphsBuffer const & glyphRegions,  // TODO(AB): Remove if not needed.
-                      dp::text::TextMetrics const & metrics,
-                      buffer_vector<size_t, 2> const & delimIndexes,
-                      buffer_vector<std::pair<size_t, glsl::vec2>, 2> & result,
-                      m2::PointF & pixelSize, size_t & rowsCount)
-{
-  typedef std::pair<float, float> TLengthAndHeight;
-  buffer_vector<TLengthAndHeight, 2> lengthAndHeight;
-  // TODO(AB): Now there's always one line (one delimIndex). Shaping of each line should be done separately.
-/*
-  float maxLength = 0;
-  float summaryHeight = 0;
-  rowsCount = 0;
-
-  size_t start = 0;
-  for (auto const end : delimIndexes)
-  {
-    ASSERT_NOT_EQUAL(start, end, ());
-    lengthAndHeight.emplace_back(0, 0);
-    auto & [length, height] = lengthAndHeight.back();
-    for (size_t glyphIndex = start; glyphIndex < end && glyphIndex < glyphRegions.size(); ++glyphIndex)
-    {
-      dp::TextureManager::GlyphRegion const & glyphRegion = glyphRegions[glyphIndex];
-      auto const & glyphMetrics = metrics.m_glyphs[glyphIndex];
-      if (!glyphRegion.IsValid())
-        continue;
-
-      if (glyphIndex == start)
-        length -= glyphMetrics.m_xOffset * textRatio;
-
-      length += glyphMetrics.m_xAdvance * textRatio;
-
-      float yAdvance = glyphMetrics.m_yAdvance;  // TODO(AB): It is zero for horizontal layouts.
-      if (glyphMetrics.m_yOffset < 0)
-        yAdvance += glyphMetrics.m_yOffset;
-
-      height = std::max(height, (glyphRegion.GetPixelHeight() + yAdvance) * textRatio);
-    }
-    maxLength = std::max(maxLength, length);
-    summaryHeight += height;
-    if (height > 0.0f)
-      ++rowsCount;
-    start = end;
-  }
-
-  ASSERT_EQUAL(delimIndexes.size(), lengthAndHeight.size(), ());
-*/
-
-  // TODO(AB): Temporarily always 1
-  ASSERT_EQUAL(delimIndexes.size(), 1, ());
-
-  float const summaryHeight = textRatio * metrics.m_maxLineHeightInPixels;
-  float const maxLength = textRatio * metrics.m_lineWidthInPixels;
-  lengthAndHeight.emplace_back(maxLength, summaryHeight);
-
-  XLayouter const xL(anchor);
-  YLayouter yL(anchor, summaryHeight);
-  for (size_t index = 0; index < delimIndexes.size(); ++index)
-  {
-    auto const & [length, height] = lengthAndHeight[index];
-    result.emplace_back(delimIndexes[index], glsl::vec2(xL(length, maxLength), yL(height)));
-  }
-
-  pixelSize = m2::PointF(maxLength, summaryHeight);
-}
-
 double GetTextMinPeriod(double pixelTextLength)
 {
   double const vs = df::VisualParams::Instance().GetVisualScale();
@@ -299,17 +241,6 @@ double GetTextMinPeriod(double pixelTextLength)
   return etalonEmpty + pixelTextLength;
 }
 }  // namespace
-
-void TextLayout::Init(std::string const & text, float fontSize, ref_ptr<dp::TextureManager> textureManager)
-{
-  ASSERT_EQUAL(std::string::npos, text.find('\n'), ("Is multiline string expected here?", text));
-
-  auto const fontScale = static_cast<float>(VisualParams::Instance().GetFontScale());
-  m_textSizeRatio = fontSize * fontScale / dp::kBaseFontSizePixels;
-
-  // TODO(AB): StraightTextLayout used a logic to split a longer string into two strings.
-  m_shapedGlyphs = textureManager->ShapeSingleTextLine(dp::kBaseFontSizePixels, text, &m_glyphRegions);
-}
 
 ref_ptr<dp::Texture> TextLayout::GetMaskTexture() const
 {
@@ -352,16 +283,30 @@ dp::TGlyphs TextLayout::GetGlyphs() const
 StraightTextLayout::StraightTextLayout(std::string const & text, float fontSize, ref_ptr<dp::TextureManager> textures,
                                        dp::Anchor anchor, bool forceNoWrap)
 {
-  // TODO(AB): Use ICU's BreakIterator to split text properly in different languages.
-  // TODO(AB): Here the text is optionally split by its length into two pieces.
-  buffer_vector<size_t, 2> delimIndexes;
-  // if (visibleText == text && !forceNoWrap)
-  //   SplitText(visibleText, delimIndexes);
-  // else
-  delimIndexes.push_back(text.size());
+  ASSERT_EQUAL(std::string::npos, text.find('\n'), ("Multiline text is not expected", text));
 
-  Init(text, fontSize, textures);
-  CalculateOffsets(anchor, m_textSizeRatio, m_glyphRegions, m_shapedGlyphs, delimIndexes, m_offsets, m_pixelSize, m_rowsCount);
+  m_textSizeRatio = fontSize * static_cast<float>(VisualParams::Instance().GetFontScale()) / dp::kBaseFontSizePixels;
+  m_shapedGlyphs = textures->ShapeSingleTextLine(dp::kBaseFontSizePixels, text, &m_glyphRegions);
+
+  // TODO(AB): Use ICU's BreakIterator to split text properly in different languages without spaces.
+  auto const lines = SplitText(m_textSizeRatio, textures->GetSpaceGlyph(), m_shapedGlyphs);
+  m_rowsCount = lines.size();
+
+  float summaryHeight = 0.;
+  float maxLength = 0;
+  for (auto const & line : lines)
+  {
+    summaryHeight += line.m_scaledHeight;
+    maxLength = std::max(maxLength, line.m_scaledLength);
+  }
+
+  XLayouter const xL(anchor);
+  YLayouter yL(anchor, summaryHeight);
+
+  for (auto const & l : lines)
+    m_offsets.emplace_back(l.m_nextLineStartIndex, glsl::vec2(xL(l.m_scaledLength, maxLength), yL(l.m_scaledHeight)));
+
+  m_pixelSize = m2::PointF(maxLength, summaryHeight);
 }
 
 m2::PointF StraightTextLayout::GetSymbolBasedTextOffset(m2::PointF const & symbolSize, dp::Anchor textAnchor,
@@ -433,7 +378,13 @@ PathTextLayout::PathTextLayout(m2::PointD const & tileCenter, std::string const 
                                float fontSize, ref_ptr<dp::TextureManager> textureManager)
   : m_tileCenter(tileCenter)
 {
-  Init(text, fontSize, textureManager);
+  ASSERT_EQUAL(std::string::npos, text.find('\n'), ("Multiline text is not expected", text));
+
+  auto const fontScale = static_cast<float>(VisualParams::Instance().GetFontScale());
+  m_textSizeRatio = fontSize * fontScale / dp::kBaseFontSizePixels;
+
+  // TODO(AB): StraightTextLayout used a logic to split a longer string into two strings.
+  m_shapedGlyphs = textureManager->ShapeSingleTextLine(dp::kBaseFontSizePixels, text, &m_glyphRegions);
 }
 
 void PathTextLayout::CacheStaticGeometry(dp::TextureManager::ColorRegion const & colorRegion,
