@@ -57,6 +57,9 @@ using Observers = NSHashTable<Observer>;
 
 @property(nonatomic) Observers * observers;
 
+@property(nonatomic, readwrite) NSArray * testStrings;
+@property(nonatomic) int testStringIndex;
+
 @end
 
 @implementation MWMTextToSpeech
@@ -130,6 +133,7 @@ using Observers = NSHashTable<Observer>;
   NSUserDefaults * ud = NSUserDefaults.standardUserDefaults;
   [ud setObject:locale forKey:kUserDefaultsTTSLanguageBcp47];
   [self createVoice:locale];
+  self.testStrings = nil; // re-initialize test strings with new locale
 }
 
 - (BOOL)isValid { return _speechSynthesizer != nil && _speechVoice != nil; }
@@ -277,6 +281,48 @@ using Observers = NSHashTable<Observer>;
   }
 
   return _audioPlayer;
+}
+
+- (void)playRandomTestString {
+  if (![self isValid])
+    [self createVoice:[[self class] savedLanguage]];
+  
+  if (self.testStrings == nil)
+    return;
+  
+  [self speakOneString:self.testStrings[_testStringIndex]];
+  
+  if (++_testStringIndex >= self.testStrings.count)
+    _testStringIndex = 0;
+}
+
+- (NSArray *)testStrings {
+  if (_testStrings == nil) {
+    NSString * language = [NSString stringWithUTF8String:bcp47ToTwineLanguage([[self class] savedLanguage]).c_str()];
+    NSString * languagePath = [NSBundle.mainBundle pathForResource:language ofType:@"lproj"];
+    if (languagePath == nil) {
+      LOG(LWARNING, ("Couldn't find translation file for ", language.UTF8String));
+      return nil;
+    }
+    NSBundle * bundle = [NSBundle bundleWithPath:languagePath];
+    
+    NSMutableArray * appTips = [NSMutableArray new];
+    NSString * notFound = @"_not found";
+    for (int idx = 0; ; idx++) {
+      NSString * appTipKey = [NSString stringWithFormat:@"app_tip_%02d", idx];
+      NSString * appTip = [bundle localizedStringForKey:appTipKey value:notFound table:nil];
+      if ([appTip isEqualToString:notFound])
+        break;
+      [appTips addObject:appTip];
+    }
+    
+    // shuffle appTips
+    for (NSUInteger i = appTips.count; i > 1; i--)
+      [appTips exchangeObjectAtIndex:i - 1 withObjectAtIndex:arc4random_uniform((u_int32_t)i)];
+    
+    _testStrings = [[NSArray alloc] initWithArray:appTips];
+  }
+  return _testStrings;
 }
 
 #pragma mark - MWMNavigationDashboardObserver

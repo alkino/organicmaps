@@ -25,4 +25,21 @@
   XCTAssertEqual(tts::translateLocale("unknown"), "");
 }
 
+- (void)testTestStringsWithEnglish {
+  MWMTextToSpeech * tts = [MWMTextToSpeech tts];
+  XCTAssertTrue([tts.testStrings containsObject: @"Thank you for using our community-built maps!"]);
+}
+
+- (void)testTestStringsWithGerman {
+  MWMTextToSpeech * tts = [MWMTextToSpeech tts];
+  [tts setNotificationsLocale:@"de-DE"];
+  XCTAssertTrue([tts.testStrings containsObject: @"Danke, dass du unsere von der Community erstellten Karten benutzt!"]);
+}
+
+- (void)testTestStringsWithInvalidLanguage {
+  MWMTextToSpeech * tts = [MWMTextToSpeech tts];
+  [tts setNotificationsLocale:@"xxx"];
+  XCTAssertNil(tts.testStrings);
+}
+
 @end

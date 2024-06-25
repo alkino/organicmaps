@@ -15,9 +15,11 @@
 + (void)applicationDidBecomeActive;
 
 @property(nonatomic) BOOL active;
+@property(nonatomic, readonly) NSArray * testStrings;
 - (void)setNotificationsLocale:(NSString *)locale;
 - (void)playTurnNotifications:(NSArray<NSString *> *)turnNotifications;
 - (void)playWarningSound;
+- (void)playRandomTestString;
 
 - (instancetype)init __attribute__((unavailable("call +tts instead")));
 - (instancetype)copy __attribute__((unavailable("call +tts instead")));
