@@ -660,7 +660,7 @@ text::TextMetrics GlyphManager::ShapeText(std::string_view utf8, int fontPixelHe
     hb_buffer_set_language(m_impl->m_harfbuzzBuffer, hbLanguage);
 
     auto u32CharacterIter{text.begin() + substring.m_start};
-    auto const end{text.begin() + substring.m_start + substring.m_length};
+    auto const end{u32CharacterIter + substring.m_length};
     do
     {
       auto const u32Character = utf8::unchecked::next16(u32CharacterIter);

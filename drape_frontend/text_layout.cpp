@@ -25,7 +25,7 @@ public:
 
   void SetPenPosition(glsl::vec2 const & penOffset) {}
 
-  void operator() (dp::TextureManager::GlyphRegion const & glyph, dp::text::GlyphMetrics const & metrics)
+  void operator() (dp::TextureManager::GlyphRegion const & glyph, dp::text::GlyphMetrics const &)
   {
     m2::RectF const & mask = glyph.GetTexRect();
 
@@ -107,7 +107,7 @@ public:
 
   void SetPenPosition(glsl::vec2 const & penOffset) {}
 
-  void operator() (dp::TextureManager::GlyphRegion const & glyph, dp::text::GlyphMetrics const & metrics)
+  void operator() (dp::TextureManager::GlyphRegion const & glyph, dp::text::GlyphMetrics const &)
   {
     m2::RectF const & mask = glyph.GetTexRect();
     m_buffer.emplace_back(m_colorCoord, m_outlineCoord, glsl::ToVec2(mask.LeftTop()));
