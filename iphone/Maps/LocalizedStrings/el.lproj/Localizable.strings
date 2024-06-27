@@ -263,6 +263,9 @@
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Γλώσσα φωνής";
 
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Δοκιμή φωνητικών οδηγιών (TTS, Text-To-Speech)";
+
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Άλλo";
 
@@ -732,7 +735,7 @@
 "login_to_make_edits_visible" = "Συνδεθείτε ώστε άλλοι χρήστες να μπορούν να δουν τις αλλαγές που έχετε κάνει";
 
 /* Error dialog no space */
-"migration_no_space_message" = "Για να το κατεβάσετε, χρειάζεστε περισσότερο χώρο. Διαγράψτε μη απαραίτητα δεδομένα.";
+"migration_no_space_message" = "Για να το κατεβάσετε, χρειάζεστε περισσότερο χώρο. Διαγρ��ψτε μη απαραίτητα δεδομένα.";
 
 "editor_sharing_title" = "Βελτίωσα τους χάρτες Organic Maps";
 
@@ -923,6 +926,10 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Οι πληροφορίες για την κίνηση δεν είναι διαθέσιμες";
 
+"enable_logging" = "Ενεργοποίηση δυνατότητας καταγραφής";
+
+"log_file_size" = "Μέγεθος αρχείου καταγραφής: %@";
+
 "transliteration_title" = "Μεταγραφή στα Λατινικά";
 
 /* Subway exits for public transport marks on the map */
@@ -1050,6 +1057,8 @@
 "power_managment_setting_auto" = "Αυτόματα";
 
 "power_managment_setting_manual_max" = "Πάντα";
+
+"enable_logging_warning_message" = "Αυτή η λειτουργία είναι ενεργοποιημένη για την καταγραφή ενεργειών για διαγνωστικούς σκοπούς. Αυτό βοηθά την ομάδα να εντοπίζει προβλήματα με την εφαρμογή. Να ενεργοποιείτε τη λειτουργία μόνο κατόπιν αιτήματος της υποστήριξης του Organic Maps.";
 
 "driving_options_title" = "Ρυθμίσεις δρομολόγησης";
 
@@ -1269,6 +1278,36 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/El:About_OpenStreetMap";
+
+/* App Tip #00 */
+"app_tip_00" = "Σας ευχαριστούμε που χρησιμοποιείτε τους χάρτες μας που δημιουργήθηκαν από την κοινότητα!";
+
+/* App tip #01 */
+"app_tip_01" = "Με τις δωρεές και την υποστήριξή σας, μπορούμε να δημιουργήσουμε τους καλύτερους χάρτες στον κόσμο!";
+
+/* App tip #02 */
+"app_tip_02" = "Σας αρέσει η εφαρμογή μας; Παρακαλούμε κάντε μια δωρεά για να στηρίξετε την ανάπτυξη! Ακόμα δεν σας αρέσει; Ενημερώστε μας και θα το διορθώσουμε!";
+
+/* App tip #03 */
+"app_tip_03" = "Εάν γνωρίζετε έναν προγραμματιστή λογισμικού, μπορείτε να του ζητήσετε να υλοποιήσει μια λειτουργία που χρειάζεστε.";
+
+/* App tip #04 */
+"app_tip_04" = "Γνωρίζετε ότι μπορείτε να πατήσετε παρατεταμένα οποιοδήποτε μέρος στο χάρτη για να το επιλέξετε;";
+
+/* App tip #05 */
+"app_tip_05" = "Γνωρίζετε ότι μπορείτε να επιλέξετε την τρέχουσα τοποθεσία σας στο χάρτη;";
+
+/* App tip #06 */
+"app_tip_06" = "Μπορείτε να βοηθήσετε στη μετάφραση της εφαρμογής μας στη γλώσσα σας.";
+
+/* App tip #07 */
+"app_tip_07" = "Η εφαρμογή μας έχει αναπτυχθεί από λίγους θιασώτες και την κοινότητα.";
+
+/* App tip #08 */
+"app_tip_08" = "Μπορείτε εύκολα να διορθώσετε και να βελτιώσετε τα δεδομένα χάρτη.";
+
+/* App tip #09 */
+"app_tip_09" = "Ο κύριος στόχος μας είναι να δημιουργήσουμε γρήγορους, εύχρηστους και με σεβασμό στην ιδιωτικότητα χάρτες που θα λατρέψετε.";
 
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Αυτή τη στιγμή το Organic Maps βρίσκεται στην οθόνη του κινητού";

@@ -205,14 +205,20 @@
 	<string name="prefs_group_route">Navigazione</string>
 	<string name="pref_zoom_title">Pulsanti per lo zoom</string>
 	<string name="pref_zoom_summary">Mostra sulla mappa</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">Modalità notturna</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Aspetto</string>
 	<!-- Generic «Off» string -->
 	<string name="off">Spento</string>
 	<!-- Generic «On» string -->
 	<string name="on">Acceso</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Automatico</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Chiaro</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Scuro</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">Sistema</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Vista in prospettiva</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -606,10 +612,6 @@
 	  <item quantity="other">%d file trovati. Li vedrai dopo la conversione.</item>
 	</plurals>
 	<string name="restore">Ripristina</string>
-	<plurals name="objects">
-	  <item quantity="one">%d oggetto</item>
-	  <item quantity="other">%d oggetti</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="one">%d luogo</item>
 	  <item quantity="other">%d luoghi</item>
@@ -746,6 +748,8 @@
 	<string name="enable_show_on_lock_screen">Mostra sulla schermata di blocco</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Quando è abilitata, non è necessario sbloccare il dispositivo ogni volta mentre l\'app è in esecuzione.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Lingua della mappa</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Dati della mappa da OpenStreetMap</string>
 	<!-- A link to the TTS FAQ -->

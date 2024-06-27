@@ -217,14 +217,20 @@
 	<string name="prefs_group_route">Navigation</string>
 	<string name="pref_zoom_title">Zoom-Tasten</string>
 	<string name="pref_zoom_summary">Auf der Karte anzeigen</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">Nachtmodus</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Erscheinungsbild</string>
 	<!-- Generic «Off» string -->
 	<string name="off">Aus</string>
 	<!-- Generic «On» string -->
 	<string name="on">An</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Auto</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Hell</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Dunkel</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">System</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Perspektivische Ansicht</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -621,10 +627,6 @@
 	  <item quantity="other">%d Dateien wurden gefunden. Sie werden sie nach der Konvertierung sehen.</item>
 	</plurals>
 	<string name="restore">Wiederherstellen</string>
-	<plurals name="objects">
-	  <item quantity="one">%d Objekt</item>
-	  <item quantity="other">%d Objekte</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="one">%d Ort</item>
 	  <item quantity="other">%d Orte</item>
@@ -765,6 +767,8 @@
 	<string name="enable_show_on_lock_screen">Auf dem Sperrbildschirm anzeigen</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Wenn aktiviert, muss das Gerät nicht jedes Mal entsperrt werden, wenn die App ausgeführt wird.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Karten-Sprache</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Kartendaten von OpenStreetMap</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->

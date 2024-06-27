@@ -220,14 +220,20 @@
 	<string name="prefs_group_route">Навігація</string>
 	<string name="pref_zoom_title">Кнопки трансфокації</string>
 	<string name="pref_zoom_summary">Відображення на екрані</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">Нічний режим</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Вигляд</string>
 	<!-- Generic «Off» string -->
 	<string name="off">Вимкнуто</string>
 	<!-- Generic «On» string -->
 	<string name="on">Увімкнуто</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Автоматично</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Світлий</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Темний</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">Система</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Перспективний вид</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -365,7 +371,7 @@
 	<string name="dialog_routing_disclaimer_recommendations">— Запропоновані маршрути — лише рекомендації;</string>
 	<string name="dialog_routing_disclaimer_borders">— Дотримуйтеся обережності з маршрутами у прикордонних зонах: маршрути, створені нашою програмою, іноді можуть перетинати кордони країн у несанкціонованих місцях;</string>
 	<string name="dialog_routing_disclaimer_beware">Будьте уважні на дорогах і бережіть себе!</string>
-	<string name="dialog_routing_check_gps">Перевірте сигнал GPS</string>
+	<string name="dialog_routing_check_gps">П��ревірте сигнал GPS</string>
 	<string name="dialog_routing_error_location_not_found">Маршрут не побудовано. Поточну геопозицію не визначено.</string>
 	<string name="dialog_routing_location_turn_wifi">Будь ласка, перевірте сигнал GPS. Для покращання точності геопозиції увімкніть Wi-Fi.</string>
 	<string name="dialog_routing_location_turn_on">Увімкніть режим визначення геопозиції</string>
@@ -599,7 +605,7 @@
 	<string name="alert_reauth_message">Будь ласка увійдіть в акаунт OpenStreetMap.org, щоб автоматично публікувати зміни до мапи. Подробиці за <a href="https://github.com/organicmaps/organicmaps/issues/6144">посиланням</a>.</string>
 	<string name="dialog_error_storage_title">Не вдалося отримати доступ до сховища</string>
 	<string name="dialog_error_storage_message">Зовнішнє сховище не доступно. Ймовірно, SD-картку пам\'яті було вилучено, пошкоджено, або система файлів доступна тільки для читання. Будь ласка, перевірте та зв\'яжіться з нами, написавши на адресу електронну пошту support\@organicmaps.app</string>
-	<string name="setting_emulate_bad_storage">Емулювати проблемне сховище</string>
+	<string name="setting_emulate_bad_storage">Емулювати проблем��е сховище</string>
 	<string name="core_entrance">Вхід</string>
 	<string name="error_enter_correct_name">Будь ласка, введіть коректне ім\'я</string>
 	<string name="bookmark_lists">Списки</string>
@@ -626,9 +632,6 @@
 	  <item quantity="other">%d файлів було знайдено. Ви побачите їх після конвертації.</item>
 	</plurals>
 	<string name="restore">Відновити</string>
-	<plurals name="objects">
-	  <item quantity="other">%d місце</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="other">%d місць</item>
 	</plurals>
@@ -767,6 +770,8 @@
 	<string name="enable_show_on_lock_screen">Показувати на заблокованому екрані</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Якщо ввімкнено, вам не потрібно щоразу розблоковувати пристрій під час роботи програми.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Мова карти</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Картографічні дані з OpenStreetMap</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->

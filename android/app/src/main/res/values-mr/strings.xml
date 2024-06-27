@@ -195,14 +195,20 @@
 	<string name="prefs_group_route">मार्गनिर्देशन</string>
 	<string name="pref_zoom_title">झूम बटणे</string>
 	<string name="pref_zoom_summary">नकाशावर दाखवा</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">रात्र मोड</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">प्रतिमा</string>
 	<!-- Generic «Off» string -->
 	<string name="off">बंद</string>
 	<!-- Generic «On» string -->
 	<string name="on">चालू</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">स्वयं</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">प्रकाश</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">अंधार</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">प्रणाली</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">यथार्थ दृश्य</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -587,9 +593,6 @@
 	  <item quantity="other">%d फाईली सापडल्या. रूपांतरानंतर तुम्ही त्या पाहू शकता.</item>
 	</plurals>
 	<string name="restore">पूर्ववत् करा</string>
-	<plurals name="objects">
-	  <item quantity="other">%d वस्तू</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="one">%d ठिकाण</item>
 	  <item quantity="other">%d ठिकाणे</item>
@@ -724,11 +727,13 @@
 	<string name="disconnect_usb_cable_title">USB केबल काढा</string>
 	<string name="enable_keep_screen_on">स्क्रीन चालू ठेवा</string>
 	<!-- Description in preferences -->
-	<string name="enable_keep_screen_on_description">सक्षम असतानानकाशाशप्रदर्शितिकरतानानस्क्रीनीनेहमीमचालूाअसेलसेल.</string>
+	<string name="enable_keep_screen_on_description">सक्���म असतानानकाशाशप्रदर्शितिकरतानानस्क्रीनीनेहमीमचालूाअसेलसेल.</string>
 	<!-- A preference title; keep short! -->
 	<string name="enable_show_on_lock_screen">लॉक पटलावर (स्क्रीनवर) दाखवा</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">चालू असल्यास, ऍप चालू असताना प्रत्येक वेळी तुम्हाला तुमचे उपकरण अनलॉक करण्याची आवश्यकता नाही.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">नकाशाची भाषा</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
 	<string name="translated_om_site_url">https://organicmaps.app/mr/</string>
 	<!-- App Tip #00 -->

@@ -217,14 +217,20 @@
 	<string name="prefs_group_route">Navigatie</string>
 	<string name="pref_zoom_title">Zoomknoppen</string>
 	<string name="pref_zoom_summary">Toon op de kaart</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">Nachtmodus</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Weergave</string>
 	<!-- Generic «Off» string -->
 	<string name="off">Uit</string>
 	<!-- Generic «On» string -->
 	<string name="on">Aan</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Automatisch</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Licht</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Donker</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">Systeem</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Perspectiefbeeld</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -619,9 +625,6 @@
 	  <item quantity="other">Er zijn %d bestanden gevonden. Je zult ze na de conversie zien.</item>
 	</plurals>
 	<string name="restore">Zet terug</string>
-	<plurals name="objects">
-	  <item quantity="other">%d plaats</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="other">%d plaatsen</item>
 	</plurals>
@@ -760,6 +763,8 @@
 	<string name="enable_show_on_lock_screen">Toon op vergrendelscherm</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Indien ingeschakeld, hoeft het scherm niet te worden ontgrendeld wanneer de app actief is.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Kaarttaal</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Kaartgegevens van OpenStreetMap</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->

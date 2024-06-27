@@ -204,14 +204,20 @@
 	<string name="prefs_group_route">导航</string>
 	<string name="pref_zoom_title">缩放按钮</string>
 	<string name="pref_zoom_summary">在屏幕上显示</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">夜间模式</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">外观</string>
 	<!-- Generic «Off» string -->
 	<string name="off">关闭</string>
 	<!-- Generic «On» string -->
 	<string name="on">开启</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">自动</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">浅色</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">深色</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">系统</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">透视图</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -303,7 +309,7 @@
 	<!-- Text for routing error dialog -->
 	<string name="routing_download_maps_along">下载沿线地图</string>
 	<!-- Text for routing error dialog -->
-	<string name="routing_requires_all_map">创建路线需要下载并更新好所有从您的位置到目的地的地图。</string>
+	<string name="routing_requires_all_map">创建路线需要下载并更新好所���从您的位置到目的地的地图。</string>
 	<!-- Text for routing error dialog -->
 	<string name="routing_not_enough_space">空间不足</string>
 	<!-- location service disabled -->
@@ -602,9 +608,6 @@
 	  <item quantity="other">找到%d个文件。 转换后你会看到它。</item>
 	</plurals>
 	<string name="restore">恢复</string>
-	<plurals name="objects">
-	  <item quantity="other">%d 地点</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="other">%d 地点</item>
 	</plurals>
@@ -735,6 +738,8 @@
 	<string name="enable_show_on_lock_screen">在锁屏上显示</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">启用后，即使设备已锁定，应用程序仍将在锁屏上运行。</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">地图语言</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">地图数据来自 OpenStreetMap</string>
 	<!-- App Tip #00 -->

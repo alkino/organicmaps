@@ -202,14 +202,20 @@
 	<string name="prefs_group_route">การนำทาง</string>
 	<string name="pref_zoom_title">ปุ่มซูม</string>
 	<string name="pref_zoom_summary">แสดงบนหน้าจอ</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">โหมดกลางคืน</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">รูปแบบ</string>
 	<!-- Generic «Off» string -->
 	<string name="off">ปิด</string>
 	<!-- Generic «On» string -->
 	<string name="on">เปิด</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">อัตโนมัติ</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">สว่าง</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">มืด</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">ระบบ</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">มุมมองเพอร์สเปกทีฟ</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -588,12 +594,9 @@
 	<string name="phone_number">หมายเลขโทรศัพท์</string>
 	<string name="profile">โปรไฟล์ OpenStreetMap</string>
 	<plurals name="bookmarks_detect_message">
-	  <item quantity="other">%d ไฟล์ที่ค้นพบ คุณจะเห็นพวกเขาหลังจากการแปลง</item>
+	  <item quantity="other">%d ไฟล์ที่ค้นพ��� คุณจะเห็นพวกเขาหลังจากการแปลง</item>
 	</plurals>
 	<string name="restore">ฟื้นฟู</string>
-	<plurals name="objects">
-	  <item quantity="other">%d สถานที่</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="other">%d สถานที่ต่าง ๆ</item>
 	</plurals>
@@ -738,7 +741,7 @@
 	<!-- App tip #07 -->
 	<string name="app_tip_07">แอพของเราได้รับการพัฒนาโดยผู้ที่ชื่นชอบและชุมชนบางส่วน</string>
 	<!-- App tip #08 -->
-	<string name="app_tip_08">คุณสามารถแก้ไขและปรับปรุงข้อมูลแผนที่ได้อย่างง่ายดาย</string>
+	<string name="app_tip_08">คุณสามารถแก้ไขและปรับปรุง���้อมูลแผนที่ได้อย่างง่ายดาย</string>
 	<!-- App tip #09 -->
 	<string name="app_tip_09">เป้าหมายหลักของเราคือการสร้างแผนที่ที่รวดเร็ว เน้นความเป็นส่วนตัว และใช้งานง่ายที่คุณจะหลงรัก</string>
 	<!-- Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen -->

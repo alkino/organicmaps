@@ -263,6 +263,9 @@
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Lingua per la voce";
 
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Prova le indicazioni vocali (TTS, Text-To-Speech)";
+
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Altro";
 
@@ -923,6 +926,10 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Dati sul traffico non disponibili";
 
+"enable_logging" = "Abilita i registri";
+
+"log_file_size" = "Dimensione del file di registro: %@";
+
 "transliteration_title" = "Trascrizione in latino";
 
 /* Subway exits for public transport marks on the map */
@@ -1050,6 +1057,8 @@
 "power_managment_setting_auto" = "Automatico";
 
 "power_managment_setting_manual_max" = "Massimo risparmio energetico";
+
+"enable_logging_warning_message" = "L'opzione attiva i registri per scopi diagnostici. Può essere utile al nostro team per risolvere i problemi dell'app. Abilita temporaneamente questa opzione per registrare e inviarci registri dettagliati sul tuo problema.";
 
 "driving_options_title" = "Impostazioni di deviazione";
 
@@ -1269,6 +1278,36 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/IT:About";
+
+/* App Tip #00 */
+"app_tip_00" = "Grazie per aver utilizzato le nostre mappe costruite dalla comunità!";
+
+/* App tip #01 */
+"app_tip_01" = "Con le tue donazioni e il tuo supporto, possiamo creare le migliori mappe del mondo!";
+
+/* App tip #02 */
+"app_tip_02" = "Ti piace la nostra app? Si prega di donare per sostenere lo sviluppo! Non ti piace ancora? Fatecelo sapere e risolveremo il problema!";
+
+/* App tip #03 */
+"app_tip_03" = "Se conosci uno sviluppatore di software, puoi chiedergli di implementare una funzionalità di cui hai bisogno.";
+
+/* App tip #04 */
+"app_tip_04" = "Sai che puoi toccare a lungo qualsiasi luogo sulla mappa per selezionarlo?";
+
+/* App tip #05 */
+"app_tip_05" = "Sai che puoi selezionare la tua posizione attuale sulla mappa?";
+
+/* App tip #06 */
+"app_tip_06" = "Puoi aiutare a tradurre la nostra app nella tua lingua.";
+
+/* App tip #07 */
+"app_tip_07" = "La nostra app è sviluppata da alcuni appassionati e dalla community.";
+
+/* App tip #08 */
+"app_tip_08" = "Puoi facilmente correggere e migliorare i dati della mappa.";
+
+/* App tip #09 */
+"app_tip_09" = "Il nostro obiettivo principale è creare mappe veloci, incentrate sulla privacy e facili da usare che adorerai.";
 
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Ora stai utilizzando Organic Maps sullo schermo del telefono";

@@ -263,6 +263,9 @@
 /* Settings «Route» category: «Tts language» title */
 "pref_tts_language_title" = "Мова підказок";
 
+/* Settings «Route» category: «Test Voice Directions» title */
+"pref_tts_test_voice_title" = "Тестування голосових підказок (TTS, Text-To-Speech)";
+
 /* Title for "Other" section in TTS settings. */
 "pref_tts_other_section_title" = "Інша";
 
@@ -469,7 +472,7 @@
 
 "dialog_routing_disclaimer_beware" = "Будьте уважні на дорогах і бережіть себе!";
 
-"dialog_routing_check_gps" = "Перевірте сигнал GPS";
+"dialog_routing_check_gps" = "П��ревірте сигнал GPS";
 
 "dialog_routing_error_location_not_found" = "Маршрут не побудовано. Поточну геопозицію не визначено.";
 
@@ -923,6 +926,10 @@
 /* "traffic" as in "road congestion" */
 "traffic_data_unavailable" = "Дані про трафік недоступні";
 
+"enable_logging" = "Включити логіювання";
+
+"log_file_size" = "Розмір файлу журналу: %@.";
+
 "transliteration_title" = "Транслітерація латинськими літерами";
 
 /* Subway exits for public transport marks on the map */
@@ -1050,6 +1057,8 @@
 "power_managment_setting_auto" = "Автоматично";
 
 "power_managment_setting_manual_max" = "Максимальне енергозбереження";
+
+"enable_logging_warning_message" = "Дана опція вмикається для логування дій з метою діагностики. Це допомагає команді виявити проблеми з додатком. Тимчасово включайте цю настройку тільки для відправки детальної інформації про знайдену вами проблему в додатку через кнопку \"Сповістити про помилку\".";
 
 "driving_options_title" = "Налаштування об’їзду";
 
@@ -1269,6 +1278,36 @@
 
 /* Link to OSM wiki for Editor, Profile and About pages */
 "osm_wiki_about_url" = "https://wiki.openstreetmap.org/wiki/Uk:Про_проект";
+
+/* App Tip #00 */
+"app_tip_00" = "Дякуємо, що користуєтесь нашими мапами, створеними спільнотою!";
+
+/* App tip #01 */
+"app_tip_01" = "Завдяки вашим пожертвам і підтримці ми зможемо створити найкращі карти світу!";
+
+/* App tip #02 */
+"app_tip_02" = "Вам подобається наш додаток? Підтримайте його розвиток грошима! Поки ще не подобається? Будь ласка, повідомте нам, чому, і ми це виправимо!";
+
+/* App tip #03 */
+"app_tip_03" = "Якщо у вас є знайомий розробник програмного забезпечення, ви можете попросити його реалізувати потрібну вам функцію.";
+
+/* App tip #04 */
+"app_tip_04" = "Чи знаєте ви, що можна вибрати будь-яке місце на карті, довго тримаючи палець на точці?";
+
+/* App tip #05 */
+"app_tip_05" = "А ви знали, що своє місцезнаходження на карті можна вибрати?";
+
+/* App tip #06 */
+"app_tip_06" = "Ви можете допомогти перекласти наш додаток на вашу мову.";
+
+/* App tip #07 */
+"app_tip_07" = "Наша програма розроблена кількома ентузіастами та спільнотою.";
+
+/* App tip #08 */
+"app_tip_08" = "Ви можете легко виправити та покращити дані карти.";
+
+/* App tip #09 */
+"app_tip_09" = "Наша головна мета – створити швидкі, конфіденційні та прості у використанні карти, які вам сподобаються.";
 
 /* Text on the Android Auto or CarPlay placeholder screen that maps are displayed on the phone screen */
 "car_used_on_the_phone_screen" = "Зараз ви використовуєте Organic Maps на екрані телефону";

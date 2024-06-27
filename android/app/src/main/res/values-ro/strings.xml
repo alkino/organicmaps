@@ -205,14 +205,20 @@
 	<string name="prefs_group_route">Navigare</string>
 	<string name="pref_zoom_title">Butoane zoom</string>
 	<string name="pref_zoom_summary">Arată pe hartă</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">Mod nocturn</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Aspect</string>
 	<!-- Generic «Off» string -->
 	<string name="off">Oprit</string>
 	<!-- Generic «On» string -->
 	<string name="on">Pornit</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Automat</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Luminos</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Întunecat</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">Sistem</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Vedere în perspectivă</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -607,10 +613,6 @@
 	  <item quantity="other">Au fost găsite %d fișiere. Le vei vedea după conversiune.</item>
 	</plurals>
 	<string name="restore">Restabilește</string>
-	<plurals name="objects">
-	  <item quantity="one">%d obiect</item>
-	  <item quantity="other">%d obiecte</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="one">%d loc</item>
 	  <item quantity="other">%d locuri</item>
@@ -747,6 +749,8 @@
 	<string name="enable_show_on_lock_screen">Arată pe ecranul de blocare</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Când este activată, nu trebuie să deblochezi telefonul de fiecare dată când aplicația este în funcțiune.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Limbă hartă</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Date cartografice din OpenStreetMap</string>
 	<!-- App Tip #00 -->

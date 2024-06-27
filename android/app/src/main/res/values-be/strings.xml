@@ -218,14 +218,20 @@
 	<string name="prefs_group_route">Навігацыя</string>
 	<string name="pref_zoom_title">Кнопкі маштабавання</string>
 	<string name="pref_zoom_summary">Паказаць на мапе</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">Начны рэжым</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Выгляд</string>
 	<!-- Generic «Off» string -->
 	<string name="off">Выключаны</string>
 	<!-- Generic «On» string -->
 	<string name="on">Уключаны</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Аўтаматычна</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Светлы</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Цемны</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">сістэма</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Перспектыўны выгляд</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -613,11 +619,6 @@
 	<string name="phone_number">Нумар тэлефона</string>
 	<string name="profile">Профіль OpenStreetMap</string>
 	<string name="restore">Аднавіць</string>
-	<plurals name="objects">
-	  <item quantity="few">%d аб\'екты</item>
-	  <item quantity="one">%d аб\'ект</item>
-	  <item quantity="other">%d аб\'ектаў</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="few">%d месцы</item>
 	  <item quantity="one">%d месца</item>
@@ -756,6 +757,8 @@
 	<string name="enable_show_on_lock_screen">Паказваць на экране блакіроўкі</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Калі ўключана, вам не трэба разблакіраваць прыладу кожны раз падчас працы праграмы.</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Мова карты</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Даныя карты з OpenStreetMap</string>
 	<!-- Telegram group url for the "?" About page -->

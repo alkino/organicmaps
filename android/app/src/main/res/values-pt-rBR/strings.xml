@@ -213,8 +213,14 @@
 	<string name="prefs_group_route">Navegação</string>
 	<string name="pref_zoom_title">Botões de zoom</string>
 	<string name="pref_zoom_summary">Mostrar na tela</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">Aparência</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">Automático</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">Clara</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">Escura</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">Visão em perspectiva</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -571,10 +577,6 @@
 	  <item quantity="other">%d arquivos foram encontrados. Você os verá depois da conversão.</item>
 	</plurals>
 	<string name="restore">Restaurar</string>
-	<plurals name="objects">
-	  <item quantity="one">%d objeto</item>
-	  <item quantity="other">%d objetos</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="one">%d lugar</item>
 	  <item quantity="other">%d lugares</item>
@@ -701,6 +703,8 @@
 	<string name="enable_show_on_lock_screen">Mostrar na tela de bloqueio</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">Quando ativado, você não precisará debloquear seu dispositivo toda vez que o aplicativo estiver funcionando</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">Idioma do mapa</string>
 	<!-- OpenStreetMap text on splash screen -->
 	<string name="splash_subtitle">Dados do mapa do OpenStreetMap</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->

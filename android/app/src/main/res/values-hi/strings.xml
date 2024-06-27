@@ -218,14 +218,20 @@
 	<string name="prefs_group_route">मार्गदर्शन</string>
 	<string name="pref_zoom_title">ज़ूम बटन</string>
 	<string name="pref_zoom_summary">मानचित्र पर बटन प्रदर्शित करें</string>
-	<!-- Settings «Map» category: «Night style» title -->
-	<string name="pref_map_style_title">रात का मोड</string>
+	<!-- Settings «Map» category: «Appearance» title -->
+	<string name="pref_map_style_title">प्रकटन</string>
 	<!-- Generic «Off» string -->
 	<string name="off">बंद</string>
 	<!-- Generic «On» string -->
 	<string name="on">चालू</string>
 	<!-- Generic «Auto» string -->
 	<string name="auto">स्वचालित</string>
+	<!-- Settings "Appearance" category: "Light" title, should be consistent with the pref_map_title translation. -->
+	<string name="light">हल्का</string>
+	<!-- Settings "Appearance" category: "Dark" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="dark">गहरा</string>
+	<!-- Settings "Appearance" category: "System" title, should be consistent with the pref_map_style_title translation. -->
+	<string name="system">प्रणाली</string>
 	<!-- Settings «Map» category: «Perspective view» title -->
 	<string name="pref_map_3d_title">परिप्रेक्ष्य दृश्य</string>
 	<!-- Settings «Map» category: «3D buildings» title -->
@@ -441,10 +447,6 @@
 	<string name="please_wait">कृपया प्रतीक्षा करें…</string>
 	<string name="phone_number">फ़ोन नंबर</string>
 	<string name="profile">OpenStreetMap प्रोफ़ाइल</string>
-	<plurals name="objects">
-	  <item quantity="one">%d वस्तु</item>
-	  <item quantity="other">%d वस्तुएं</item>
-	</plurals>
 	<plurals name="places">
 	  <item quantity="other">%d स्थान</item>
 	</plurals>
@@ -505,6 +507,8 @@
 	<string name="enable_show_on_lock_screen">लॉक स्क्रीन पर दिखाएँ</string>
 	<!-- Description in preferences -->
 	<string name="enable_show_on_lock_screen_description">सक्षम होने पर, डिवाइस लॉक होने पर भी ऐप लॉकस्क्रीन पर काम करेगा।</string>
+	<!-- Current language of the map! -->
+	<string name="change_map_locale">मानचित्र भाषा</string>
 	<!-- Translated Organic Maps site, add new translations here: https://github.com/organicmaps/organicmaps.github.io/tree/master/content -->
 	<string name="translated_om_site_url">https://organicmaps.app/hi/</string>
 	<!-- App Tip #00 -->
@@ -516,7 +520,7 @@
 	<!-- App tip #03 -->
 	<string name="app_tip_03">यदि आप किसी सॉफ़्टवेयर डेवलपर को जानते हैं, तो आप उससे वह सुविधा लागू करने के लिए कह सकते हैं जिसकी आपको आवश्यकता है।</string>
 	<!-- App tip #04 -->
-	<string name="app_tip_04">क्या आप जानते हैं कि आप मानचित्र पर किसी भी स्थान को चुनने के लिए उस पर देर तक टैप कर सकते हैं?</string>
+	<string name="app_tip_04">क्या आप जानते हैं कि आप मानचित्र पर किसी भी स्थान को चुनने के लिए उस पर देर तक टैप कर सक���े हैं?</string>
 	<!-- App tip #05 -->
 	<string name="app_tip_05">क्या आप जानते हैं कि आप मानचित्र पर अपना वर्तमान स्थान चुन सकते हैं?</string>
 	<!-- App tip #06 -->
