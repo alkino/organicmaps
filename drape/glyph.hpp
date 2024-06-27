@@ -53,9 +53,8 @@ struct GlyphFontAndId
 };
 
 
-//using TGlyph = std::pair<int16_t /* fontIndex */, uint16_t /* glyphId */>;
-// TODO(AB): Measure if 32 is the best value here.
-using TGlyphs = buffer_vector<GlyphFontAndId, 32>;
+// 50 glyphs should fit most of the strings based on tests in Switzerland and China.
+using TGlyphs = buffer_vector<GlyphFontAndId, 50>;
 
 struct Glyph
 {

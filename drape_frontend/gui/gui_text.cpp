@@ -302,6 +302,8 @@ void MutableLabel::SetMaxLength(uint16_t maxLength)
 dp::TGlyphs MutableLabel::GetGlyphs() const
 {
   dp::TGlyphs glyphs;
+  glyphs.reserve(m_shapedText.m_glyphs.size());
+
   for (auto const & glyph : m_shapedText.m_glyphs)
     glyphs.emplace_back(glyph.m_key);
   return glyphs;
